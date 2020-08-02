@@ -1,0 +1,257 @@
+#!/usr/bin/env zsh
+# Ben Greenberg
+# github.com/nebbles/dotfiles
+
+# Close any open System Preferences panes
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the adminstrator password
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+# ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+# ┃  General                                                                  ┃
+# ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+# Automatically switch light/dark mode
+#defaults write 'Apple Global Domain' AppleInterfaceStyleSwitchesAutomatically -bool true
+# Alternatively, switch to dark mode only
+defaults write 'Apple Global Domain' AppleInterfaceStyleSwitchesAutomatically -bool false
+defaults write 'Apple Global Domain' AppleInterfaceStyle -string 'Dark'
+
+# Set scroll to jump to mouse location
+defaults write 'Apple Global Domain' AppleScrollerPagingBehavior -bool true
+
+# Set highlight colour to green
+defaults write 'Apple Global Domain' AppleHighlightColor -string "0.752941 0.964706 0.678431 Green"
+
+# Restore windows after quiting application
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool true
+defaults write 'Apple Global Domain' NSQuitAlwaysKeepsWindows -bool true
+
+# Date and Time
+# TODO need to find out how to configure this one
+# defaults write com.apple.menuextra.clock -dict DateFormat HH:mm:ss
+
+# Sharing
+# Configure computer name / hostname
+#sudo scutil --set ComputerName "0x6D746873"
+#sudo scutil --set HostName "0x6D746873"
+#sudo scutil --set LocalHostName "0x6D746873"
+#defaults write com.apple.rapport familySyncedName -string "0x6D746873"
+
+
+# ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+# ┃  Dock, Hot Corners, Mission Control                                       ┃
+# ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+# Configure the Hot Corners
+defaults write com.apple.dock "wvous-tl-corner" -int 4 # Desktop
+defaults write com.apple.dock "wvous-tr-corner" -int 12 # Notification centre
+defaults write com.apple.dock "wvous-tr-modifier" -int 0
+defaults write com.apple.dock "wvous-br-corner" -int 2 # Mission Control
+defaults write com.apple.dock "wvous-br-modifier" -int 0
+
+# Dock icon size
+defaults write com.apple.dock tilesize -float 31
+
+# Dock should not animate opening applications
+defaults write com.apple.dock launchanim -bool false
+
+# Dock should automatically hide and show
+defaults write com.apple.dock autohide -bool true
+
+# "hidden" apps in dock will be dimmed
+defaults write com.apple.Dock showhidden -bool true
+
+# Eliminate the Dock reveal delay
+defaults write com.apple.dock autohide-delay -int 0
+
+# Speed up the Dock reveal animation
+defaults write com.apple.dock autohide-time-modifier -int 0 # No animation
+#defaults write com.apple.dock autohide-time-modifier -float 0.12 # Super-fast animation
+#defaults delete com.apple.dock autohide-time-modifier # Revert to default
+
+# Mission Control should not rearrange by most recently used
+defaults write com.apple.dock mru-spaces -bool false
+
+
+# ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+# ┃  Siri and Spotlight                                                       ┃
+# ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+# Siri: disable from menu bar & lock screen
+defaults write com.apple.Siri LockscreenEnabled -bool false
+defaults write com.apple.Siri StatusMenuVisible -bool false
+defaults write com.apple.assistant.backedup "Use device speaker for TTS" -int 3
+
+# Spotlight
+# Disable spotlight suggestions (which apparently get sent to Apple)
+# https://www.stuartellis.name/articles/mac-setup/#do-this-first
+defaults write com.apple.lookup.shared LookupSuggestionsDisabled -bool false
+
+
+# ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+# ┃  Hardware I/O : Sound, Keyboard, Trackpad                                 ┃
+# ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+# Sound: enable volume control on menu bar
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool true
+# You may need to add the following line...
+# defaults write com.apple.systemuiserver menuExtras -array-add "/System/Library/CoreServices/Menu Extras/Volume.menu"
+
+# Keyboard
+#   Touchbar configuration
+defaults write com.apple.touchbar.agent PresentationModeFnModes -dict fullControlStrip spaces
+defaults write com.apple.touchbar.agent PresentationModeFnModes -dict functionKeys app
+defaults write com.apple.touchbar.agent PresentationModeGlobal -string fullControlStrip
+
+# Keyboard: Text: 
+#   'Replacements' will be automatically configured and synced by iCloud.
+#   Stop auto capitalisation
+defaults write 'Apple Global Domain' NSAutomaticCapitalizationEnabled -bool false
+#   Stop period subsitution
+defaults write 'Apple Global Domain' NSAutomaticPeriodSubstitutionEnabled -bool false
+#   Stop text completion substitution
+defaults write 'Apple Global Domain' NSAutomaticTextCompletionEnabled -bool false
+#   Disable smart quotes and dashes
+defaults write 'Apple Global Domain' NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write 'Apple Global Domain' NSAutomaticDashSubstitutionEnabled -bool false
+
+# Keyboard: Shortcuts
+# Disable Spotlight and Finder search window shortcuts (in favour of Alfred)
+# TODO: Need to find a way to modify nested dictionaries
+# com.apple.symbolichotkeys AppleSymbolicHotKeys.64.enabled -bool false
+# com.apple.symbolichotkeys AppleSymbolicHotKeys.65.enabled -bool false
+
+# Use keyboard navigation to move focus (tab key)
+defaults write 'Apple Global Domain' AppleKeyboardUIMode -int 2
+
+# Trackpad
+#   Adjust click force
+defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 2
+defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 2
+#   Adjust tracking speed
+defaults write 'Apple Global Domain' com.apple.trackpad.scaling -float 3
+#   Enable app expose gesture
+defaults read-type com.apple.dock showAppExposeGestureEnabled -bool true
+
+
+# ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+# ┃  Safari Preferences                                                       ┃
+# ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+# Disable autofill in Safari (handled by 1Password)
+sudo defaults write com.apple.Safari AutoFillCreditCardData -bool false
+sudo defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+sudo defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+sudo defaults write com.apple.Safari AutoFillPasswords -bool false
+
+# Disable auto opening downloaded files
+sudo defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+
+# Remove history items after N days. 1000 years is the default for 'manually'
+sudo defaults write com.apple.Safari HistoryAgeInDaysLimit -int 365000
+
+# Set homepage
+sudo defaults write com.apple.Safari HomePage -string "https://google.com/"
+
+# Show full URL
+sudo defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+
+# Show icons in tabs
+sudo defaults write com.apple.Safari ShowIconsInTabs -bool true
+
+# Show overlay status bar (shows link URLs in bottom left corner by hovering)
+sudo defaults write com.apple.Safari ShowOverlayStatusBar -bool true
+
+
+# TODO complete this config file
+################################################################################
+# From mathiasbynens/dotfiles/.macos                                           #
+################################################################################
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# Possible values: `WhenScrolling`, `Automatic` and `Always`
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+# ┃  Power Management & Energy Saving                                         ┃
+# ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+# Enable lid wakeup
+sudo pmset -a lidwake 1
+
+# Restart automatically on power loss
+#sudo pmset -a autorestart 1
+
+# Restart automatically if the computer freezes
+#sudo systemsetup -setrestartfreeze on
+
+# Set the display sleep
+sudo pmset -a displaysleep 5
+
+# Set machine sleep while charging
+sudo pmset -c sleep 60
+
+# Set machine sleep on battery
+sudo pmset -b sleep 10
+
+# Set standby delay to 24 hours (default is 1 hour)
+#sudo pmset -a standbydelay 86400
+
+# Never go into computer sleep mode
+#sudo systemsetup -setcomputersleep Off > /dev/null
+
+# Hibernation mode
+# 0: Disable hibernation (speeds up entering sleep mode)
+# 3: Copy RAM to disk so the system state can still be restored in case of a
+#    power failure.
+#sudo pmset -a hibernatemode 0
+
+# Remove the sleep image file to save disk space
+#sudo rm /private/var/vm/sleepimage
+# Create a zero-byte file instead…
+#sudo touch /private/var/vm/sleepimage
+# …and make sure it can’t be rewritten
+#sudo chflags uchg /private/var/vm/sleepimage
+
+###############################################################################
+# Screen                                                                      #
+###############################################################################
+
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# Save screenshots to the desktop
+#defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+#defaults write com.apple.screencapture type -string "png"
+
+# Disable shadow in screenshots
+#defaults write com.apple.screencapture disable-shadow -bool true
+
+# Enable subpixel font rendering on non-Apple LCDs
+# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
+#defaults write NSGlobalDomain AppleFontSmoothing -int 1
+
+# Enable HiDPI display modes (requires restart)
+sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+

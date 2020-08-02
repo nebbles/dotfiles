@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+#
+# Run all install scripts found in the repo.
+
+set -e
+
+# Change directory to dotfiles repo
+cd "$(dirname $0)"/..
+
+# Run all install scripts with the name `.../install.sh` or `.../*.install.sh`
+# and not in a path containing .git
+for installscript in $(find . \( -name "install.sh" -o -name "*.install.sh" \) -not -path '*.git*')
+do
+    echo $installscript
+    sh -c "${installscript}"
+done

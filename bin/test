@@ -1,0 +1,74 @@
+#!/usr/bin/env zsh
+
+echo "this is a test...!"
+exit 0
+
+# Shortcut to dotfiles repo
+export DOTFILES=$HOME/.dotfiles
+
+
+# For arrays (but not for associative arrays), keep only the first occurrence of
+# each duplicated value.
+typeset -U zsh_files
+# Set variable for zsh files
+zsh_files=($DOTFILES/**/*.zsh)
+post_files=($DOTFILES/**/*.post_ohmyzsh.zsh)
+aliases_files=($DOTFILES/**/aliases.zsh)
+
+echo all files
+for file in ${zsh_files}
+do
+    echo "  $file"
+done
+
+echo post files
+for file in ${post_files}
+do
+    echo $file
+done
+
+echo all without post
+for file in ${zsh_files:|post_files}
+do
+    echo $file
+done
+
+echo "all without post or alias"
+typeset -U blacklist
+blacklist=($post_files $aliases_files)
+for file in ${zsh_files:|blacklist}
+do
+    echo $file
+done
+
+exit 0
+
+# Load all other config files except the path, completion, and post ohmyzsh
+# files.
+for file in ${${${zsh_files:#*/path.zsh}:#*/completion.zsh}:#*.post_ohmyzsh.zsh}
+do
+    source $file
+done
+
+# # initialize autocomplete here, otherwise functions won't be loaded
+# autoload -U compinit
+# compinit
+
+# # load every completion after autocomplete loads
+# for file in ${(M)zsh_files:#*/completion.zsh}
+# do
+#   source $file
+# done
+
+echo loading post ohmyzsh!
+
+# load every completion after autocomplete loads
+for file in ${(M)zsh_files:#*.post_ohmyzsh.zsh}
+do
+    echo $file
+#   source $file
+done
+
+# unset zsh_files
+
+exit 0

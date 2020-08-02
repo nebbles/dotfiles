@@ -1,0 +1,195 @@
+#!/usr/bin/env zsh
+#
+# bootstrap is the install script for the dotfiles repository. 
+#
+# Based on the fantastic https://github.com/holman/dotfiles 
+#
+# Where possible, explanations of the commands have been provided. I recommend
+# also using https://www.explainshell.com/ for lines you many not understand.
+#
+# zsh is a dependency of this script and must be installed first.
+
+info () {
+  printf "\r  [ \033[0;34mINFO\033[0m ] $1\n"
+}
+
+query_user () {
+  printf "\r  [  \033[0;33m??\033[0m  ] $1\n"
+}
+
+success () {
+  printf "\r\033[2K  [  \033[00;32mOK\033[0m  ] $1\n"
+}
+
+fail () {
+  printf "\r\033[2K  [ \033[0;31mFAIL\033[0m ] $1\n"
+  echo ''
+  exit
+}
+
+setup_gitconfig () {
+    local GITCONFIG_FILE='git/gitconfig.local.symlink'
+
+    # If file does not already exist
+    if ! [ -f $GITCONFIG_FILE ]
+    then
+        info 'setup gitconfig'
+
+        git_credential='cache'
+        # Check if operating system name is Darwin (i.e. macOS)
+        if [[ "$(uname -s)" == "Darwin" ]]
+        then
+            git_credential='osxkeychain'
+        fi
+
+        # Query user for git author information.
+        query_user ' - What is your github author name?'
+        read git_authorname
+        query_user ' - What is your github author email?'
+        read git_authoremail
+
+        # sed will run the regex commands and replace text in the example file
+        # before then saving to a non-example file
+        sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
+
+        success "gitconfig: file created: $GITCONFIG_FILE"
+    else
+        info "gitconfig: already set in $GITCONFIG_FILE"
+    fi
+}
+
+link_file () {
+    local src=$1 dst=$2
+    # Initialise null variables locally
+    local overwrite= backup= skip=
+    local action=
+
+    # If destination is a file or a directory or a symbolic link
+    if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
+    then
+        if [[ "$overwrite_all" == "false" ]] && [[ "$backup_all" == "false" ]] && [[ "$skip_all" == "false" ]]
+        then
+            # Store the path of the existing link
+            local currentSrc="$(readlink $dst)"
+
+            # Given the path is the same as what we want to set it to
+            if [[ "$currentSrc" == "$src" ]]
+            then
+                skip=true;
+            else
+                query_user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
+                [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+                # Return after reading -k chars, store result to var `action`
+                read -k 1 action
+
+                case "$action" in
+                    o )
+                    overwrite=true;;
+                    O )
+                    overwrite_all=true;;
+                    b )
+                    backup=true;;
+                    B )
+                    backup_all=true;;
+                    s )
+                    skip=true;;
+                    S )
+                    skip_all=true;;
+                    * )
+                    ;;
+                esac
+            fi
+        fi
+
+        # If the var is null, take the value of `*_all` and inherit it For more,
+        # see "Parameter Expansion" in https://linux.die.net/man/1/dash
+        overwrite=${overwrite:-$overwrite_all}
+        backup=${backup:-$backup_all}
+        skip=${skip:-$skip_all}
+
+        if [[ "$overwrite" == "true" ]]
+        then
+            rm -rf "$dst"
+            success "removed $dst"
+        fi
+
+        if [[ "$backup" == "true" ]]
+        then
+            mv "$dst" "${dst}.backup"
+            success "moved $dst to ${dst}.backup"
+        fi
+    fi
+
+    if [[ "$skip" != "true" ]]  # "false" or empty
+    then
+        ln -s "$1" "$2"
+        success "linked $1 to $2"
+    else 
+        success "skipped $src"
+    fi
+}
+
+install_dotfile_symlinks () {
+    info 'installing dotfiles'
+
+    # Intialise linker global variables
+    local overwrite_all=false backup_all=false skip_all=false
+
+    # Fetch all the `*.symlink` files except in the .git path
+    for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+    do
+        # Target destination example: 
+        #   ~/.dotfiles/zsh/zshrc.symlink → ~/.zshrc
+        dst="$HOME/.$(basename "${src%.symlink}")"
+        link_file "$src" "$dst"
+        # For more info, see "Parameter Expansion" in
+        # https://linux.die.net/man/1/dash
+    done
+}
+
+
+# Change to dotfiles root directory.
+cd "$(dirname "$0")/.."
+# Print the physical current working directory (all symbolic links resolved).
+DOTFILES_ROOT=$(pwd -P) 
+info "dotfiles root: $DOTFILES_ROOT"
+
+# Set to exit immediately on errors.
+set -e
+
+# Run our setup functions
+setup_gitconfig
+install_dotfile_symlinks
+
+# If we're on a Mac, let's install and setup homebrew.
+if [[ "$(uname -s)" == "Darwin" ]]
+then
+    info "installing dependencies with bin/dot"
+
+    # Note that sourcing runs the script in place. Causing exits to end this
+    # script early. Additionally, piping to while loop causes the exit code to
+    # always be 0, therefore never correctly identifying a failure.
+    #
+    # if source bin/dot | while read -r data; do info "$data"; done 
+    #   if $DOTFILES_ROOT/bin/dot --bootstrap
+
+    $DOTFILES_ROOT/bin/dot --bootstrap | while read -r data; do info "$data"; done 
+    # echo "The status of dot --bootstrap is: ${pipestatus[1]}"
+    if [[ ${pipestatus[1]} = 0 ]]
+    then
+        success "dependencies installed"
+    else
+        fail "error installing dependencies"
+        exit
+    fi
+fi
+
+echo ""
+echo success "bootstrapping done"
+
+# Unload the earlier declared functions
+unfunction info
+unfunction query_user
+unfunction success
+unfunction fail
+unfunction setup_gitconfig

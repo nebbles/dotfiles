@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Alias for quick virtualenv activation
+
+# TODO update this to support checks for different virtual env folder names
+# e.g. .venv .env env venv
+
+source ./env/bin/activate

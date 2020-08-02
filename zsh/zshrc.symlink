@@ -1,0 +1,107 @@
+# Shortcut to dotfiles repo
+export DOTFILES=$HOME/.dotfiles
+
+# echo "This is the path before --> $PATH"
+
+# TODO configure use
+# # your project folder that we can `c [tab]` to
+# export PROJECTS=~/Code
+
+# Stash your environment variables in ~/.localrc. This means they'll stay out of
+# your main dotfiles repository (which may be public, like this one), but you'll
+# have access to them in your scripts.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
+# For arrays (but not for associative arrays), keep only the first occurrence of
+# each duplicated value.
+typeset -U zsh_files
+typeset -U special_files
+
+# Don't throw errors when file globs don't match anything. See
+# https://www.bartbusschots.ie/s/2019/06/12/bash-to-zsh-file-globbing-and-no-matches-found-errors/
+setopt NULL_GLOB
+
+# Array of all zsh files.
+all_zsh_files=($DOTFILES/**/*.zsh)
+
+# Various arrays of special zsh files.
+ohmyzsh_file=($DOTFILES/zsh/ohmyzshrc.zsh)
+path_files=($DOTFILES/**/path.zsh $DOTFILES/**/*.path.zsh)
+completion_files=($DOTFILES/**/completion.zsh $DOTFILES/**/*.completion.zsh)
+post_ohmyzsh_files=($DOTFILES/**/*.post_ohmyzsh.zsh)
+aliases_files=($DOTFILES/**/aliases.zsh)
+
+# Concat array (without duplicates thanks to `typeset`).
+special_files=($ohmyzsh_file $path_files $completion_files $post_ohmyzsh_files $aliases_files)
+
+# reset error throws on file globs
+unsetopt NULL_GLOB
+
+# echo "The path --> $PATH"
+
+# Load the path files to modify PATH.
+for file in $path_files
+do
+    # echo "Sourcing path file: $file"
+    source $file
+done
+
+# echo "The path --> $PATH"
+
+# Load all zsh files except `special_files`. Read more about expansion at
+# http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion
+for file in ${all_zsh_files:|special_files}
+do
+    # echo "Sourcing all non-special files: $file"
+    source $file
+    # echo "After... The path --> $PATH"
+done
+
+# echo "The path --> $PATH"
+
+#* Load the ohmyzsh configuration file
+source $ohmyzsh_file
+
+
+# if (( $+commands[poetry] ))
+# then
+#     eval "$(poetry completions zsh)"
+# fi
+
+
+# Load every completion file (after autocomplete loads as part of ohmyzsh)
+for file in $completion_files
+do
+    source $file
+done
+
+# echo "The path --> $PATH"
+
+# Load every file that specifically requests to be after ohmyzsh or compinit
+for file in $post_ohmyzsh_files
+do
+    source $file
+done
+
+# echo "The path --> $PATH"
+
+# Load all personal aliases files here to ensure they override any previous
+# plugin, system, etc. Expected behaviour is that the user's preference always
+# overwrites third party.
+for file in $aliases_files
+do
+    source $file
+done
+
+# echo "The path --> $PATH"
+
+unset zsh_files
+unset special_files
+unset ohmyzsh_file
+unset path_files
+unset completion_files
+unset post_ohmyzsh_files
+unset aliases_files
