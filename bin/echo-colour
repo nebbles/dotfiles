@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# Echos the arguments, but uses the first arg to determine the colour the string
+# should be formatted with.
+#
+# Example:
+#   echo_col blue "Hello World"
+
+blue () {
+    printf "\r\033[0;34m%s\033[0m\n" "$*"
+}
+
+orange () {
+    printf "\r\033[0;33m%s\033[0m\n" "$*"
+}
+
+green () {
+    printf "\r\033[2K\033[00;32m%s\033[0m\n" "$*"
+}
+
+red () {
+    printf "\r\033[2K\033[0;31m%s\033[0m\n" "$*"
+}
+
+fn_exists()
+{
+    type -t $1 > /dev/null
+}
+
+
+COLOUR_FN=$1
+shift; # $2 becomes $1 etc
+
+fn_exists $COLOUR_FN && $COLOUR_FN "$@" \
+    || echo "The keyword $COLOUR_FN is invalid. Please provide a valid colour"
