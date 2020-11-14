@@ -1,0 +1,72 @@
+# Core applications
+cask "1password"
+cask "alfred"
+cask "bettertouchtool"
+cask "brave-browser"
+cask "browserosaurus"
+cask "carbon-copy-cloner"
+cask "google-backup-and-sync"
+cask "google-chrome"
+cask "google-drive-file-stream"
+cask "hammerspoon"
+cask "iterm2"
+cask "setapp"
+cask "visual-studio-code"
+
+# Secondary applications
+cask "caprine"
+cask "discord"
+cask "dropbox"
+cask "fantastical"
+cask "figma"
+cask "ivpn"
+cask "mailmate"
+cask "notion"
+cask "plex-media-player"
+cask "shimo"
+cask "slack"
+cask "spotify"
+cask "steam"
+cask "whatsapp"
+cask "zoomus"
+
+# Developer applications
+cask "adoptopenjdk8"
+cask "balenaetcher"
+cask "docker"
+cask "mongodb-compass"
+cask "ngrok"
+cask "postman"
+# cask "sourcetree"
+cask "vmware-fusion"
+
+# Professional applicatons
+cask "adobe-creative-cloud"
+cask "autodesk-fusion360"
+cask "prusaslicer"
+
+# Tools
+cask "avibrazil-rdm"
+cask "handbrake"
+cask "hazel"
+cask "insomnia"
+cask "pdf-expert"
+cask "teamviewer"
+cask "vlc"
+
+# Utility applications
+cask "3dconnexion"
+cask "logitech-options"
+cask "macmediakeyforwarder"
+
+# Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
+cask "qlcolorcode"
+cask "qlimagesize"
+cask "qlmarkdown"
+cask "qlstephen"
+cask "qlvideo"
+cask "quicklook-json"
+
+# Mac App Store applications (mas)
+mas "Automute", id: 1118136179
+# mas "Magnet", id: 441258766 # Magnet # Not needed now due to bettertouchtool
