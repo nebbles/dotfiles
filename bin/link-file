@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+#
+# Link file from src (first argument) to destination (second argument)
+#
+# Any conflicts are passed to the user for a decision (skip, overwrite, backup)
+#     skip - takes no action on the file overwrite - 
+#
+# Relies on global variables {skip|overwrite|backup}_all for when looping
+# through files and this command is called many times
+#
+# All other arguments are ignored
+#
+
+query_user () {
+  printf "\r\033[0;33mACTION REQUIRED:\033[0m $1\n"
+}
+
+success () {
+  printf "\r\033[2K\033[00;32mOK\033[0m - $1\n"
+}
+
+link_file () {
+    local src=$1 dst=$2
+    # Initialise null variables locally
+    local overwrite= backup= skip=
+    local action=
+
+    # If destination is a file or a directory or a symbolic link
+    if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
+    then
+        if [[ "$overwrite_all" == "false" ]] && [[ "$backup_all" == "false" ]] && [[ "$skip_all" == "false" ]]
+        then
+
+            # Store the path of the existing link
+            local currentSrc="$(readlink $dst)"
+
+            # Given the path is the same as what we want to set it to
+            if [[ "$currentSrc" == "$src" ]]
+            then
+                skip=true;
+            else
+                query_user "File already exists: $dst ($(basename "$src"))\n\
+What do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+                # Return after reading -n chars, store result to var `action`
+                read -n 1 action
+
+                case "$action" in
+                    o )
+                    echo-colour green "overwriting conflicting file"
+                    overwrite=true;;
+                    O )
+                    echo-colour green "overwriting all conflicting files"
+                    overwrite_all=true;;
+                    b )
+                    echo-colour green "backing up conflicting file"
+                    backup=true;;
+                    B )
+                    echo-colour green "backing up all conflicting files"
+                    backup_all=true;;
+                    s )
+                    echo-colour green "skipping file"
+                    skip=true;;
+                    S )
+                    echo-colour green "skipping all"
+                    skip_all=true;;
+                    * )
+                    echo-colour red "aborting - skipping all"
+                    skip_all=true;;
+                esac
+            fi
+        fi
+
+        # If the var is null, take the value of `*_all` and inherit it For more,
+        # see "Parameter Expansion" in https://linux.die.net/man/1/dash
+        overwrite=${overwrite:-$overwrite_all}
+        backup=${backup:-$backup_all}
+        skip=${skip:-$skip_all}
+
+        if [[ "$overwrite" == "true" ]]
+        then
+            rm -rf "$dst"
+            success "removed $dst"
+        fi
+
+        if [[ "$backup" == "true" ]]
+        then
+            mv "$dst" "${dst}.backup"
+            success "moved $dst to ${dst}.backup"
+        fi
+    fi
+
+    if [[ "$skip" != "true" ]]  # "false" or empty
+    then
+        ln -s "$1" "$2"
+        success "linked $1 to $2"
+    else 
+        success "skipped $src"
+    fi
+}
+
+echo "Linking file $1 to $2"
+link_file $1 $2

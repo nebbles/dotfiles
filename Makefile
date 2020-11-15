@@ -14,10 +14,10 @@ help:
 	@echo ""
 	@echo "Please specify one or more targets to run."
 	@echo "Suggested:"
-	@echo "    brew               - installs and updates brew"
 	@echo "    brew-packages      - installs all packages"
 	@echo "    cask-apps          - installs all applications"
 	@echo "    cask-apps-upgrade  - upgrades all applications"
+	@echo "    hammerspoon        - links all hammerspoon .lua files to config"
 	@echo "    install-all        - installs all 'install.sh' scripts"
 
 install-scripts:
@@ -26,7 +26,6 @@ install-scripts:
 
 brew:
 	is-executable brew || homebrew/install.sh
-	brew update
 
 brew-packages: brew
 	@echo-colour blue "installing packages from Brewfile (won't upgrade)"
@@ -50,3 +49,9 @@ setup: macos brew install-scripts
 
 bootstrap: macos install-scripts brew
 	@echo "Bootstrapping complete"
+
+hammerspoon-install: brew
+	brew list --cask hammerspoon > /dev/null || brew cask install hammerspoon
+
+hammerspoon: hammerspoon-install
+	hammerspoon/hs-link.sh
