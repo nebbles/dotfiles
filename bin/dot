@@ -7,13 +7,14 @@
 
 set -e
 
-# echo "--> the dot install failed"
-# exit 1
-
 thisDirectory="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
 dotfilesDirectory="$(cd "$( dirname "$thisDirectory" )" && pwd -P)"
 
-# Define the function used for the CLI.
+# We change directory to ensure that everything that runs from this file is in
+# the context of the dotfiles repository location
+cd $dotfilesDirectory
+
+# CLI helper function
 displayUsageAndExit() {
 	echo "dot -- dotfiles management"
 	echo ""
@@ -23,48 +24,11 @@ displayUsageAndExit() {
 	echo "  -e, --edit          Open dotfiles directory for editing"
 	echo "  -h, --help          Show this help message and exit"
 	echo "  --set-macos         Set the defaults for macOS"
-	echo "  --install-brew      Install Homebrew on the system"
-	echo "  --update-brew       Install Homebrew on the system"
-	echo "  --install-topics    Run all install scripts in dot repo"
+	echo "  --brew              Install/update Homebrew on the system"
+	echo "  --install-scripts   Run all install scripts in dot repo"
 	echo "  --bootstrap         Runs all installs and update functions"
+	echo "  make [targets]      Access to the underlying make file of repo"
 	exit
-}
-
-set_macos () {
-    # Set macOS defaults
-    # $DOTFILES/macos/set-defaults.sh
-    echo "Setting macOS defaults is not yet supported"
-}
-
-install_brew () {
-    # Install homebrew - not sure we need to redirect outputs...
-    $DOTFILES/homebrew/install.sh #2>&1
-}
-
-update_brew () {
-    # Update homebrew
-    if test $(which brew)
-    then
-        echo "→ brew update"
-        brew update
-    else
-        echo "brew is not installed"
-        exit 1
-    fi
-}
-
-install_topics () {
-    # Run the install script (runs all install scripts in repo)
-    echo "→ $DOTFILES/script/install"
-    $DOTFILES/script/install
-}
-
-install_update_all () {
-    set_macos
-    install_brew
-    update_brew
-    install_topics
-    echo $?
 }
 
 # Handle the Command Line arguments.
@@ -78,6 +42,10 @@ fi
 while [[ -n "$1" ]]
 do
 	case "$1" in
+        "make")
+            $@
+            exit
+            ;;
         "--debug")
             echo "DEBUGGING: this is a test"
 			;;
@@ -89,19 +57,16 @@ do
 			exit
 			;;
         "--set-macos")
-            set_macos
+            make macos
             ;;
-        "--install-brew")
-            install_brew
+        "--brew")
+            make brew
             ;;
-        "--update-brew")
-            update_brew
-            ;;
-        "--install-topics")
-            install_topics
+        "--install-scripts")
+            make install-scripts
             ;;
         "--bootstrap")
-            install_update_all
+            make bootstrap
             ;;
 		*)
 			echo "Invalid option: $1"
