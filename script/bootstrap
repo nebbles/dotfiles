@@ -43,14 +43,20 @@ setup_gitconfig () {
         fi
 
         # Query user for git author information.
-        query_user ' - What is your github author name?'
+        query_user ' - What is your git author name?'
         read git_authorname
-        query_user ' - What is your github author email?'
+        query_user ' - What is your git author email?'
         read git_authoremail
+        query_user ' - What is your git gpg signing key id?'
+        read git_signingkey
 
         # sed will run the regex commands and replace text in the example file
         # before then saving to a non-example file
-        sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
+        sed -e "s/AUTHOR_NAME/$git_authorname/g" \
+            -e "s/AUTHOR_EMAIL_MATCHING_GPG_KEY/$git_authoremail/g" \
+            -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" \
+            -e "s/GPG_KEY_ID/$git_signingkey/g" \
+            git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
 
         success "gitconfig: file created: $GITCONFIG_FILE"
     else
