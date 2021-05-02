@@ -13,6 +13,8 @@
         editor = code --wait
 [help]
         autocorrect = 1
+[commit]
+	    gpgsign = true
 # [apply]
 #         whitespace = nowarn
 # [mergetool]
