@@ -9,3 +9,6 @@ alias gfetch='BRANCH=$(git rev-parse --abbrev-ref HEAD) && git fetch --all --pru
 alias gs='git status'
 
 alias gc='gitcommit'
+
+# Fix for GPG
+export GPG_TTY=$(tty)
