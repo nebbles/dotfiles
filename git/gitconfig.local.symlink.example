@@ -3,4 +3,5 @@
         email = AUTHOR_EMAIL_MATCHING_GPG_KEY
         signingkey = GPG_KEY_ID
 [credential]
+        # helper = osxkeychain 
         helper = GIT_CREDENTIAL_HELPER
