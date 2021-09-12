@@ -11,6 +11,7 @@ cask "google-drive"
 cask "hammerspoon"
 cask "iterm2"
 cask "setapp"
+cask "timche-gmail-desktop"
 cask "visual-studio-code"
 
 # Secondary applications
