@@ -1,20 +1,44 @@
-# Local (i.e) private config goes in the include
-[include]
-        path = ~/.gitconfig.local
+# Note credentials are handled via SSH keys
+
+[user]
+    name = nebbles
+    email = github@greenberg.io
+    signingkey = 7D37B043
+
 [hub]
-        protocol = https
+    protocol = ssh
+
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+
 [core]
-        excludesfile = ~/.gitignore
-        editor = code --wait
+    excludesfile = ~/.gitignore
+    editor = code --wait
+
 [help]
-        autocorrect = 1
+    autocorrect = 1
+
 [commit]
-	    gpgsign = true
+    gpgsign = true
+
+[init]
+	defaultBranch = main
+
+[alias]
+    s = status
+    a = add
+    c = commit
+    co = checkout
+    main = fetch origin main:main
+    graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+#         promote = !$ZSH/bin/git-promote
+#         wtf     = !$ZSH/bin/git-wtf
+#         rank-contributors = !$ZSH/bin/git-rank-contributors
+#         count   = !git shortlog -sn
+
 # [apply]
 #         whitespace = nowarn
 # [mergetool]
@@ -27,9 +51,3 @@
 #         #
 #         # Setting to git 2.0 default to suppress warning message
 #         default = simple
-# [alias]
-#         co = checkout
-#         promote = !$ZSH/bin/git-promote
-#         wtf     = !$ZSH/bin/git-wtf
-#         rank-contributors = !$ZSH/bin/git-rank-contributors
-#         count   = !git shortlog -sn
