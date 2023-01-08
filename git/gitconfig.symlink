@@ -34,6 +34,10 @@
     co = checkout
     main = fetch origin main:main
     graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+
+[push]
+	autoSetupRemote = true
+
 #         promote = !$ZSH/bin/git-promote
 #         wtf     = !$ZSH/bin/git-wtf
 #         rank-contributors = !$ZSH/bin/git-rank-contributors
