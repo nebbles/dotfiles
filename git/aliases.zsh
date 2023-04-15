@@ -12,5 +12,7 @@ alias gs='git status'
 
 alias gc='gitcommit'
 
+alias gpnv='git push --no-verify'
+
 # Fix for GPG
 export GPG_TTY=$(tty)
