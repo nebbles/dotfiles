@@ -17,6 +17,20 @@
 [core]
     excludesfile = ~/.gitignore
     editor = code --wait
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
 
 [help]
     autocorrect = 1
@@ -27,21 +41,13 @@
 [init]
 	defaultBranch = main
 
-[alias]
-    s = status
-    a = add
-    c = commit
-    co = checkout
-    main = fetch origin main:main
-    graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
-
 [push]
 	autoSetupRemote = true
-
-#         promote = !$ZSH/bin/git-promote
-#         wtf     = !$ZSH/bin/git-wtf
-#         rank-contributors = !$ZSH/bin/git-rank-contributors
-#         count   = !git shortlog -sn
+#         # See `git help config` (search for push.default)
+#         # for more information on different options of the below setting.
+#         #
+#         # Setting to git 2.0 default to suppress warning message
+#         default = simple
 
 # [apply]
 #         whitespace = nowarn
@@ -49,9 +55,15 @@
 #         keepBackup = false
 # [difftool]
 #         prompt = false
-# [push]
-#         # See `git help config` (search for push.default)
-#         # for more information on different options of the below setting.
-#         #
-#         # Setting to git 2.0 default to suppress warning message
-#         default = simple
+
+[alias]
+    s = status
+    a = add
+    c = commit
+    co = checkout
+    main = fetch origin main:main
+    graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+#         promote = !$ZSH/bin/git-promote
+#         wtf     = !$ZSH/bin/git-wtf
+#         rank-contributors = !$ZSH/bin/git-rank-contributors
+#         count   = !git shortlog -sn
