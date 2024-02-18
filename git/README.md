@@ -1,5 +1,15 @@
 # git
 
+## 1Password and SSH authentication
+
+Make sure there is a `~/.ssh` folder first.
+
+Then turn on the 1Password SSH agent:
+https://developer.1password.com/docs/ssh/get-started/#step-3-turn-on-the-1password-ssh-agent
+
+Remember when cloning repositories to use a `git@` URI. If its starts with
+`https://` its not going to work with SSH keys!
+
 ## GPG Setup
 
 Reference:
