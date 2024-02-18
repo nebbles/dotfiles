@@ -3,7 +3,16 @@
 [user]
     name = nebbles
     email = github@greenberg.io
-    signingkey = 7D37B043
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJP8yp6iOMs6beCKZs/Bw5aY1PNg6Q/FKsErgJk12flo
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+    gpgsign = true
 
 [hub]
     protocol = ssh
@@ -34,9 +43,6 @@
 
 [help]
     autocorrect = 1
-
-[commit]
-    gpgsign = true
 
 [init]
 	defaultBranch = main
