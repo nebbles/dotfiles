@@ -1,67 +1,99 @@
+# To run install on all of the below, use the Makefile by invoking `make`. It
+# will provide help instructions on what command to run.
+
+###################
 # Core applications
+###################
+
 cask "1password"
-cask "alfred"
+# cask "alfred"
+cask "arc"
 cask "bettertouchtool"
-cask "brave-browser"
+# cask "brave-browser"
 cask "browserosaurus"
 cask "carbon-copy-cloner"
-cask "google-backup-and-sync"
+# cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-drive"
-cask "hammerspoon"
+# cask "hammerspoon"
 cask "iterm2"
+cask "raycast"
 cask "setapp"
-cask "timche-gmail-desktop"
+# cask "timche-gmail-desktop"
 cask "visual-studio-code"
 
+########################
 # Secondary applications
-cask "caprine"
+########################
+
+cask "akiflow"
+# cask "caprine"
+cask "cron"
 cask "discord"
-cask "dropbox"
-cask "fantastical"
+# cask "dropbox"
+# cask "fantastical"
 cask "figma"
 cask "ivpn"
-cask "mailmate"
+cask "linear-linear"
+# cask "mailmate"
+cask "mimestream"
 cask "notion"
+cask "obsidian"
 cask "plex-media-player"
-cask "shimo"
+# cask "shimo"
 cask "slack"
 cask "spotify"
-cask "steam"
+# cask "steam"
 cask "whatsapp"
 cask "zoom"
 
+########################
 # Developer applications
-cask "adoptopenjdk8"
+########################
+
+# cask "adoptopenjdk8"
 cask "balenaetcher"
+cask "cyberduck"
 cask "docker"
 cask "gpg-suite"
 cask "mongodb-compass"
 cask "ngrok"
 cask "postman"
 # cask "sourcetree"
-cask "vmware-fusion"
+# cask "vmware-fusion"
 
+##########################
 # Professional applicatons
-cask "adobe-creative-cloud"
-cask "autodesk-fusion360"
-cask "prusaslicer"
+##########################
 
+# cask "adobe-creative-cloud"
+# cask "autodesk-fusion360"
+# cask "prusaslicer"
+
+#######
 # Tools
-cask "avibrazil-rdm"
-cask "handbrake"
-cask "hazel"
-cask "insomnia"
+#######
+
+# cask "avibrazil-rdm"
+# cask "handbrake"
+# cask "hazel"
+# cask "insomnia"
 cask "pdf-expert"
 cask "teamviewer"
 cask "vlc"
 
+######################
 # Utility applications
-cask "3dconnexion"
-cask "logitech-options"
-cask "macmediakeyforwarder"
+######################
 
+# cask "3dconnexion"
+# cask "logitech-options"
+# cask "macmediakeyforwarder"
+
+####################
 # Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
+####################
+
 cask "qlcolorcode"
 cask "qlimagesize"
 cask "qlmarkdown"
@@ -69,6 +101,10 @@ cask "qlstephen"
 cask "qlvideo"
 cask "quicklook-json"
 
+##################################
 # Mac App Store applications (mas)
-mas "Automute", id: 1118136179
-# mas "Magnet", id: 441258766 # Magnet # Not needed now due to bettertouchtool
+##################################
+
+# mas "Automute", id: 1118136179
+mas "Drafts", id: 1435957248
+# mas "Magnet", id: 441258766 # Not needed now due to bettertouchtool

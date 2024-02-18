@@ -18,7 +18,7 @@ help:
 	@echo "    cask-apps          - installs all applications"
 	@echo "    cask-apps-upgrade  - upgrades all applications"
 	@echo "    hammerspoon        - links all hammerspoon .lua files to config"
-	@echo "    install-all        - installs all 'install.sh' scripts"
+	@echo "    install-scripts    - installs all 'install.sh' scripts"
 
 install-scripts:
 	@echo-colour blue "Running all install scripts"

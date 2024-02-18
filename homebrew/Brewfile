@@ -1,13 +1,21 @@
+###############
 # Core packages
+###############
+
 brew "cask"
+brew "cmake"
 brew "git"
+brew "git-delta"
 brew "mas"
 brew "rclone"
 brew "rsync"
 brew "tmux"
 brew "tree"
 
+##################
 # Extra utililties
+##################
+
 brew "bat"
 brew "ffmpeg"
 brew "highlight"
@@ -16,19 +24,25 @@ brew "iftop"
 brew "imagemagick"
 brew "speedtest-cli"
 
+#################
 # Developer tools
+#################
+
 brew "balena-cli"
-brew "bazel"
+# brew "bazel"
 brew "gh"
 brew "go"
 brew "heroku/brew/heroku"
 brew "pipenv"
-brew "plantuml"
+# brew "plantuml"
 brew "platformio"
-brew "pre-commit"
+# brew "pre-commit"
 brew "pyenv"
 brew "yarn"
 
+###########
 # Git tools
+###########
+
 brew "gpg"
 brew "pinentry-mac"
