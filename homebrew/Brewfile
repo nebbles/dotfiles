@@ -4,6 +4,7 @@
 
 brew "cask"
 brew "cmake"
+brew "fzf"
 brew "git"
 brew "git-delta"
 brew "mas"
@@ -11,6 +12,7 @@ brew "rclone"
 brew "rsync"
 brew "tmux"
 brew "tree"
+brew "zoxide"
 
 ##################
 # Extra utililties
