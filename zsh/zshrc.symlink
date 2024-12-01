@@ -105,3 +105,5 @@ unset path_files
 unset completion_files
 unset post_ohmyzsh_files
 unset aliases_files
+
+alias gam="/Users/bengreenberg/bin/gam/gam"
