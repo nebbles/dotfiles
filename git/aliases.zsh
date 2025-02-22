@@ -14,5 +14,7 @@ alias gc='gitcommit'
 
 alias gpnv='git push --no-verify'
 
+alias lg='lazygit'
+
 # Fix for GPG
 export GPG_TTY=$(tty)
