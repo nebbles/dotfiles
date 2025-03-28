@@ -1,5 +1,8 @@
 # Note credentials are handled via SSH keys
 
+# Inspirations:
+# - https://blog.gitbutler.com/how-git-core-devs-configure-git/
+
 [user]
     name = nebbles
     email = github@greenberg.io
@@ -28,6 +31,12 @@
     editor = code --wait
     pager = delta
 
+[tag]
+    sort = version:refname
+
+[branch]
+	sort = -committerdate
+
 [interactive]
     diffFilter = delta --color-only
 
@@ -36,24 +45,32 @@
     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 [diff]
-    colorMoved = default
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 
 [help]
-    autocorrect = 1
+    autocorrect = prompt
 
 [init]
 	defaultBranch = main
 
 [push]
+	default = simple
+    # Avoids on git push: 
+    # fatal: The current branch my-branch-name has no upstream branch.
 	autoSetupRemote = true
-#         # See `git help config` (search for push.default)
-#         # for more information on different options of the below setting.
-#         #
-#         # Setting to git 2.0 default to suppress warning message
-#         default = simple
+	followTags = true
+
+# https://blog.gitbutler.com/git-tips-1-theres-a-git-config-for-that/#reuse-recorded-resolution
+[rerere]
+    enabled = true
+    autoupdate = true
+
 
 # [apply]
 #         whitespace = nowarn
