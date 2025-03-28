@@ -27,6 +27,7 @@ insomnia
 iterm2
 ivpn
 linear-linear
+macwhisper
 mimestream
 miro
 mongodb-compass
