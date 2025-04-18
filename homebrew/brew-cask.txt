@@ -36,9 +36,7 @@ notion-calendar
 obsidian
 pdf-expert
 pgadmin4
-plex-media-player
 postman
-qlimagesize
 qlmarkdown
 qlvideo
 quicklook-json
