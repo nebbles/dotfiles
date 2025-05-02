@@ -28,6 +28,11 @@ cd ~/.dotfiles
 script/bootstrap
 ```
 
+> Once the repo is configured, 1Password has been installed via homebrew, and
+> the SSH configured, then change this repo to using SSH authentication to
+> support pushing changes:
+> `git remote set-url origin git@github.com:nebbles/dotfiles.git`
+
 ## makefile
 
 The repository has a `Makefile` that runs a fair amount of the installation.
