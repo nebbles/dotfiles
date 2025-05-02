@@ -1,0 +1,70 @@
+[
+  {
+    "key": "cmd+[",
+    "command": "workbench.action.navigateBack"
+  },
+  {
+    "key": "cmd+]",
+    "command": "workbench.action.navigateForward"
+  },
+  {
+    "key": "",
+    "command": "testing.toggleTestingPeekHistory"
+  },
+  {
+    "key": "alt+g s",
+    "command": "git.sync"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "git.checkout"
+  },
+  {
+    "key": "alt+g p",
+    "command": "git.publish"
+  },
+  {
+    "key": "shift+cmd+c",
+    "command": "-workbench.action.terminal.openNativeConsole",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "cmd+[",
+    "command": "-markdown.extension.onOutdentLines",
+    "when": "editorTextFocus && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+  },
+  {
+    "key": "cmd+[",
+    "command": "-restructuredtext.editor.listEditing.onOutdentLines",
+    "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+  },
+  {
+    "key": "cmd+]",
+    "command": "-restructuredtext.editor.listEditing.onIndentLines",
+    "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == 'restructuredtext'"
+  },
+  {
+    "key": "cmd+]",
+    "command": "-markdown.extension.onIndentLines",
+    "when": "editorTextFocus && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+  },
+  {
+    "key": "cmd+]",
+    "command": "-editor.action.indentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+left",
+    "command": "editor.action.outdentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+[",
+    "command": "-editor.action.outdentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+right",
+    "command": "editor.action.indentLines"
+  }
+]
