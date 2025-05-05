@@ -32,9 +32,17 @@ To use the files defined in this repo:
 For Cursor
 
 ```
-rm ~/Library/Application\ Support/Cursor/User/settings.json    && ln -s ~/.dotfiles/vscode/settings.json    ~/Library/Application\ Support/Cursor/User/settings.json
-rm ~/Library/Application\ Support/Cursor/User/keybindings.json && ln -s ~/.dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Cursor/User/keybindings.json
-rm ~/Library/Application\ Support/Cursor/User/tasks.json       && ln -s ~/.dotfiles/vscode/tasks.json       ~/Library/Application\ Support/Cursor/User/tasks.json
+rm -f ~/Library/Application\ Support/Cursor/User/settings.json    && ln -s ~/.dotfiles/vscode/settings.json    ~/Library/Application\ Support/Cursor/User/settings.json
+rm -f ~/Library/Application\ Support/Cursor/User/keybindings.json && ln -s ~/.dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Cursor/User/keybindings.json
+rm -f ~/Library/Application\ Support/Cursor/User/tasks.json       && ln -s ~/.dotfiles/vscode/tasks.json       ~/Library/Application\ Support/Cursor/User/tasks.json
+```
+
+For Windsurf
+
+```
+rm -f ~/Library/Application\ Support/Windsurf/User/settings.json    && ln -s ~/.dotfiles/vscode/settings.json    ~/Library/Application\ Support/Windsurf/User/settings.json
+rm -f ~/Library/Application\ Support/Windsurf/User/keybindings.json && ln -s ~/.dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Windsurf/User/keybindings.json
+rm -f ~/Library/Application\ Support/Windsurf/User/tasks.json       && ln -s ~/.dotfiles/vscode/tasks.json       ~/Library/Application\ Support/Windsurf/User/tasks.json
 ```
 
 # Extensions
