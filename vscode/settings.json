@@ -19,7 +19,9 @@
       "other": "off"
     }
   },
-  "restructuredtext.linter.extraArgs": ["--ignore D001"],
+  "restructuredtext.linter.extraArgs": [
+    "--ignore D001"
+  ],
   "sync.gist": "9e3e4e2edfb0542def8dbe6238715d21",
   "sync.autoUpload": true,
   "editor.minimap.enabled": false,
@@ -28,7 +30,11 @@
   "[cpp]": {
     "editor.defaultFormatter": "xaver.clang-format"
   },
-  "editor.rulers": [80, 100, 120],
+  "editor.rulers": [
+    80,
+    100,
+    120
+  ],
   "window.restoreWindows": "all",
   "[html]": {
     "editor.defaultFormatter": "HookyQR.beautify"
@@ -64,6 +70,14 @@
   "todo-tree.tree.showScanModeButton": false,
   "githubPullRequests.queries": [
     {
+      "label": "Local Pull Request Branches",
+      "query": "default"
+    },
+    {
+      "label": "Local Pull Request Branches",
+      "query": "repo:${owner}/${repository} default"
+    },
+    {
       "label": "Waiting For My Review",
       "query": "repo:${owner}/${repository} is:open review-requested:${user}"
     },
@@ -78,6 +92,14 @@
     {
       "label": "Mentioned Me",
       "query": "repo:${owner}/${repository} is:open mentions:${user}"
+    },
+    {
+      "label": "All Open",
+      "query": "repo:${owner}/${repository} default"
+    },
+    {
+      "label": "All Open",
+      "query": "default"
     }
   ],
   "[jsonc]": {
@@ -148,6 +170,41 @@
   },
   "chat.agent.enabled": true,
   "github.copilot.nextEditSuggestions.enabled": true,
-  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput", "yaml"],
-  "makefile.configureOnOpen": false
+  "cursor.cpp.disabledLanguages": [
+    "plaintext",
+    "markdown",
+    "scminput",
+    "yaml"
+  ],
+  "makefile.configureOnOpen": false,
+  "window.nativeTabs": false,
+  "colorInfo.languages": [
+    {
+      "selector": "css",
+      "colors": "css"
+    },
+    {
+      "selector": "sass",
+      "colors": "css"
+    },
+    {
+      "selector": "scss",
+      "colors": "css"
+    },
+    {
+      "selector": "less",
+      "colors": "css"
+    },
+    {
+      "selector": "javascript",
+      "colors": "css"
+    },
+    {
+      "selector": "javascriptreact",
+      "colors": "css"
+    }
+  ],
+  "window.zoomLevel": -0.3,
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.cpp.enablePartialAccepts": true
 }
