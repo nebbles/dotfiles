@@ -47,7 +47,7 @@ rm -f ~/Library/Application\ Support/Windsurf/User/tasks.json       && ln -s ~/.
 
 # Extensions
 
-Extensions came from
+The list of extensions came from
 
 ```
 code --list-extensions
@@ -59,6 +59,8 @@ To install
 code --install-extension EXTENSION
 ```
 
+To install them in bulk:
+
 ```
-xargs code --install-extension < ~/.dotfiles/vscode/vextensions.txt
+xargs -I {} cursor --install-extension {} < ~/.dotfiles/vscode/extensions.txt
 ```
