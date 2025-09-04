@@ -5,4 +5,4 @@
 # https://developer.1password.com/docs/cli/get-started#install
 # https://blog.1password.com/1password-cli-2_0/
 
-#source /Users/bengreenberg/.config/op/plugins.sh
+source ~/.config/op/plugins.sh
