@@ -21,7 +21,6 @@ figma
 gather
 google-chrome
 google-drive
-gpg-suite
 iina
 insomnia
 iterm2
