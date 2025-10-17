@@ -32,9 +32,15 @@ defaults write 'Apple Global Domain' AppleHighlightColor -string "0.752941 0.964
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool true
 defaults write 'Apple Global Domain' NSQuitAlwaysKeepsWindows -bool true
 
-# Date and Time
-# TODO need to find out how to configure this one
-# defaults write com.apple.menuextra.clock -dict DateFormat HH:mm:ss
+# Set clock
+defaults write -g AppleICUForce24HourTime -bool true
+defaults write com.apple.menuextra.clock IsAnalog -bool false
+defaults write com.apple.menuextra.clock ShowAMPM -bool false
+# 0 = When Space Allows, 1 = Always, 2 = Never
+defaults write com.apple.menuextra.clock ShowDate -int 1
+defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
+defaults write com.apple.menuextra.clock ShowSeconds -bool true
+defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
 
 # Sharing
 # Configure computer name / hostname
