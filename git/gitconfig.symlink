@@ -66,6 +66,21 @@
 	autoSetupRemote = true
 	followTags = true
 
+[rebase]
+    # https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---update-refs
+    # 
+    # Automatically force-update any branches that point to commits that are
+    # being rebased. Any branches that are checked out in a worktree are not
+    # updated in this way.
+    #
+    # This is important for Stacked Branches workflow with PRs. When enabled,
+    # you can rebase the tip of the stack, and all branches within the stack
+    # will be updated as the rebase is applied.
+    # 
+    # Workflow described here:
+    # https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/
+	updateRefs = true
+
 # https://blog.gitbutler.com/git-tips-1-theres-a-git-config-for-that/#reuse-recorded-resolution
 [rerere]
     enabled = true
