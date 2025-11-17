@@ -26,6 +26,7 @@ iftop
 imagemagick
 jpeg-xl
 jq
+lazydocker
 lazygit
 libass
 libassuan
