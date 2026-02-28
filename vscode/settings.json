@@ -177,7 +177,6 @@
     "yaml"
   ],
   "makefile.configureOnOpen": false,
-  "window.nativeTabs": false,
   "colorInfo.languages": [
     {
       "selector": "css",
@@ -206,5 +205,12 @@
   ],
   "window.zoomLevel": -0.3,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "cursor.cpp.enablePartialAccepts": true
+  "cursor.cpp.enablePartialAccepts": true,
+  "window.commandCenter": true,
+  "docker.extension.enableComposeLanguageServer": false,
+  "claudeCode.preferredLocation": "panel",
+  "window.customTitleBarVisibility": "never",
+  "scm.repositories.selectionMode": "single",
+  "scm.countBadge": "focused",
+  "oxc.lint.run": "onSave"
 }

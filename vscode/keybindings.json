@@ -66,5 +66,17 @@
   {
     "key": "ctrl+right",
     "command": "editor.action.indentLines"
-  }
+  },
+  {
+    "key": "ctrl+cmd+n",
+    "command": "workbench.action.newWindowTab"
+},
+{
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+        "text": "\u001b\r"
+    },
+    "when": "terminalFocus"
+}
 ]
