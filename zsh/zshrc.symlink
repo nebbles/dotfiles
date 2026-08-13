@@ -107,3 +107,14 @@ unset post_ohmyzsh_files
 unset aliases_files
 
 alias gam="/Users/bengreenberg/bin/gam/gam"
+
+# pnpm
+export PNPM_HOME="/Users/bengreenberg/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+# opencode
+export PATH=/Users/bengreenberg/.opencode/bin:$PATH
