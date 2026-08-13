@@ -123,6 +123,8 @@
 	sync = town sync
 	delete = town delete
 	rename = town rename
+	hdiff = -c core.pager=\"hunk pager\" diff
+	hshow = -c core.pager=\"hunk pager\" show
 #         promote = !$ZSH/bin/git-promote
 #         wtf     = !$ZSH/bin/git-wtf
 #         rank-contributors = !$ZSH/bin/git-rank-contributors
