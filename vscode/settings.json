@@ -6,8 +6,8 @@
   // inheritEnv usually defaults to true. This was changed to make conda work properly for the integrated terminal.
   "terminal.integrated.inheritEnv": false,
   "telemetry.enableTelemetry": false,
-  "workbench.colorTheme": "Default Light Modern",
-  "workbench.preferredLightColorTheme": "Default Light Modern",
+  "workbench.colorTheme": "Light Modern",
+  "workbench.preferredLightColorTheme": "Light Modern",
   "workbench.preferredDarkColorTheme": "One Dark Pro",
   "workbench.activityBar.orientation": "vertical", // Override default Cursor setting
   "atomKeymap.promptV3Features": true,
@@ -19,25 +19,18 @@
       "other": "off"
     }
   },
-  "restructuredtext.linter.extraArgs": [
-    "--ignore D001"
-  ],
+  "restructuredtext.linter.extraArgs": ["--ignore D001"],
   "sync.gist": "9e3e4e2edfb0542def8dbe6238715d21",
   "sync.autoUpload": true,
   "editor.minimap.enabled": false,
   "liveServer.settings.donotShowInfoMsg": true,
-  "git.autofetch": true,
   "[cpp]": {
     "editor.defaultFormatter": "xaver.clang-format"
   },
-  "editor.rulers": [
-    80,
-    100,
-    120
-  ],
+  "editor.rulers": [80, 100, 120],
   "window.restoreWindows": "all",
   "[html]": {
-    "editor.defaultFormatter": "HookyQR.beautify"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -103,13 +96,13 @@
     }
   ],
   "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "git.confirmSync": false,
   "taskExplorer.enableSideBar": true,
@@ -127,9 +120,10 @@
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,
-    "markdown": false,
+    "markdown": true,
     "scminput": false,
-    "yaml": false
+    "yaml": false,
+    "skill": false
   },
   "workbench.panel.defaultLocation": "right",
   "comments.openView": "never",
@@ -148,7 +142,8 @@
   "prisma.showPrismaDataPlatformNotification": false,
   "github.copilot.editor.enableAutoCompletions": true,
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "wordWrapColumn"
   },
   "eslint.codeActionsOnSave.rules": null,
   "[git-commit]": {
@@ -170,12 +165,7 @@
   },
   "chat.agent.enabled": true,
   "github.copilot.nextEditSuggestions.enabled": true,
-  "cursor.cpp.disabledLanguages": [
-    "plaintext",
-    "markdown",
-    "scminput",
-    "yaml"
-  ],
+  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput", "yaml"],
   "makefile.configureOnOpen": false,
   "colorInfo.languages": [
     {
@@ -209,8 +199,27 @@
   "window.commandCenter": true,
   "docker.extension.enableComposeLanguageServer": false,
   "claudeCode.preferredLocation": "panel",
-  "window.customTitleBarVisibility": "never",
   "scm.repositories.selectionMode": "single",
   "scm.countBadge": "focused",
-  "oxc.lint.run": "onSave"
+  "oxc.lint.run": "onSave",
+  "claudeCode.selectedModel": "opus[1m]",
+  "json.schemaDownload.trustedDomains": {
+    "https://developer.microsoft.com/json-schemas/": true,
+    "https://json-schema.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://models.dev/model-schema.json": true,
+    "https://opencode.ai/config.json": true,
+    "https://raw.githubusercontent.com/": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://schemastore.azurewebsites.net/": true,
+    "https://www.schemastore.org/": true
+  },
+  "gitlens.codeLens.scopes": ["document"],
+  "[skill]": {
+    "editor.wordWrap": "wordWrapColumn"
+  },
+  "git.detectWorktrees": true,
+  "yaml.disableSchemaDetection": [],
+  "githubRepositories.autoFetch.enabled": false
 }

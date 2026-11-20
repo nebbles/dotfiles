@@ -70,13 +70,27 @@
   {
     "key": "ctrl+cmd+n",
     "command": "workbench.action.newWindowTab"
-},
-{
+  },
+  {
     "key": "shift+enter",
     "command": "workbench.action.terminal.sendSequence",
     "args": {
-        "text": "\u001b\r"
+      "text": "\u001b\r"
     },
     "when": "terminalFocus"
-}
+  },
+  {
+    "key": "shift+alt+cmd+b",
+    "command": "workbench.action.toggleMaximizedAuxiliaryBar"
+  },
+  {
+    "key": "shift+cmd+j",
+    "command": "-workbench.action.search.toggleQueryDetails",
+    "when": "inSearchEditor || searchViewletFocus"
+  },
+  {
+    "key": "shift+cmd+j",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "panelAlignment == 'center' || panelPosition != 'bottom' && panelPosition != 'top'"
+  }
 ]
