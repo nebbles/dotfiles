@@ -6,11 +6,12 @@
 #
 # https://github.com/pyenv/pyenv
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+# Disabled to avoid pyenv initialization and rehashing on every shell startup.
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init --path)"
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 ## ! conda init needs to follow pyenv init
 # However we ran `conda config --set auto_activate_base false` in order to
