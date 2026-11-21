@@ -66,6 +66,9 @@ ZSH_CUSTOM="$HOME/.dotfiles/zsh/ohmyzsh_custom"
 #plugins=(git colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting) # old config
 plugins=(git nvm poetry)
 
+# Load NVM on the first Node/NPM-related command, rather than at shell startup.
+zstyle ':omz:plugins:nvm' lazy yes
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration

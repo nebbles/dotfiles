@@ -1,5 +1,5 @@
 # nvm (node version manager)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# The Oh My Zsh nvm plugin handles lazy loading.
 
 [ -s "./.nvmrc" ] && nvm use
