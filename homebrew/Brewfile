@@ -1,50 +1,86 @@
-###############
-# Core packages
-###############
+# Installed Homebrew state, refreshed 2026-11-21.
+# Formulae match brew-formula.txt: explicitly requested packages, not dependencies.
+# Install with `make brew-packages` from the dotfiles root.
 
+################
+# Installed taps
+################
+
+tap "anomalyco/tap"
+tap "driceroland/tap"
+tap "humanlayer/humanlayer"
+tap "kitlangton/tap"
+tap "manaflow-ai/cmux"
+tap "modem-dev/tap"
+tap "oven-sh/bun"
+tap "pulumi/tap"
+tap "withgraphite/tap"
+
+#####################
+# Requested formulae
+#####################
+
+brew "anomalyco/tap/opencode-v2"
+brew "aom"
+brew "aws-sso-cli"
+brew "awscli"
+brew "balena-cli"
+brew "bat"
+brew "binwalk"
+brew "btop"
 brew "cask"
+brew "cloc"
 brew "cmake"
+brew "croc"
+brew "diff-pdf"
+brew "exiftool"
+brew "ffmpeg"
+brew "fresh-editor"
 brew "fzf"
+brew "gh"
+brew "ghostscript"
 brew "git"
 brew "git-delta"
-brew "mas"
-brew "rclone"
-brew "rsync"
-brew "tmux"
-brew "tree"
-brew "zoxide"
-
-##################
-# Extra utililties
-##################
-
-brew "bat"
-brew "ffmpeg"
+brew "git-town"
+brew "go"
+brew "gource"
+brew "graphviz"
+brew "herdr"
+brew "heroku"
 brew "highlight"
+brew "hledger"
 brew "htop"
 brew "iftop"
 brew "imagemagick"
-brew "speedtest-cli"
-
-#################
-# Developer tools
-#################
-
-brew "balena-cli"
-# brew "bazel"
-brew "gh"
-brew "go"
-brew "heroku/brew/heroku"
+brew "jq"
+brew "kitlangton/tap/ghui"
+brew "lazydocker"
+brew "lazygit"
+brew "lazyjournal"
+brew "mas"
+brew "modem-dev/tap/hunk"
+brew "ollama"
+brew "openai-whisper"
+brew "oven-sh/bun/bun"
+brew "pi-coding-agent"
 brew "pipenv"
-# brew "plantuml"
 brew "platformio"
-# brew "pre-commit"
+brew "pngcheck"
+brew "pnpm"
+brew "postgresql@14"
+brew "pulumi/tap/pulumi"
 brew "pyenv"
+brew "python@3.11"
+brew "rclone"
+brew "rsync"
+brew "speedtest-cli"
+brew "tmux"
+brew "tree"
+brew "trivy"
+brew "uv"
+brew "uvicorn"
+brew "virtualenv"
+brew "web-ext"
 brew "yarn"
-
-###########
-# Git tools
-###########
-
-brew "gpg"
-brew "pinentry-mac"
+brew "ykman"
+brew "zoxide"

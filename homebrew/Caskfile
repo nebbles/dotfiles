@@ -1,110 +1,100 @@
-# To run install on all of the below, use the Makefile by invoking `make`. It
-# will provide help instructions on what command to run.
+# Installed Homebrew state, refreshed 2026-11-21.
+# Casks match brew-cask.txt. Apps managed outside Homebrew are not listed.
+# Install with `make cask-apps` from the dotfiles root.
 
-###################
-# Core applications
-###################
+######################
+# Third-party app taps
+######################
+
+tap "driceroland/tap"
+tap "humanlayer/humanlayer"
+
+####################
+# Installed casks
+####################
 
 cask "1password"
-# cask "alfred"
+cask "1password-cli"
+cask "affinity"
+cask "affinity-designer"
+cask "affinity-photo"
 cask "arc"
-cask "bettertouchtool"
-# cask "brave-browser"
+cask "artcraft-launcher"
+cask "balenaetcher"
+cask "blackhole-2ch"
+cask "brave-browser"
 cask "browserosaurus"
 cask "carbon-copy-cloner"
-# cask "google-backup-and-sync"
+cask "chatgpt"
+cask "chromium"
+cask "claude"
+cask "claude-code"
+cask "cmux"
+cask "codex-app"
+cask "cursor"
+cask "cyberduck"
+cask "deskpad"
+cask "discord"
+cask "driceroland/tap/search"
+cask "figma"
+cask "firefox"
+cask "gcloud-cli"
+cask "ghostty"
+cask "gitbutler"
 cask "google-chrome"
 cask "google-drive"
-# cask "hammerspoon"
+cask "hoppscotch"
+# Retained from installed metadata; the upstream cask definition may be unavailable.
+cask "humanlayer/humanlayer/codelayer"
+cask "iina"
+cask "imazing-profile-editor"
+cask "insomnia"
 cask "iterm2"
-cask "raycast"
-cask "setapp"
-# cask "timche-gmail-desktop"
-cask "visual-studio-code"
-
-########################
-# Secondary applications
-########################
-
-cask "akiflow"
-# cask "caprine"
-cask "cron"
-cask "discord"
-# cask "dropbox"
-# cask "fantastical"
-cask "figma"
 cask "ivpn"
-cask "linear-linear"
-# cask "mailmate"
+cask "jordanbaird-ice"
+cask "libreoffice"
+cask "linear"
+cask "mesh"
+cask "microsoft-edge"
 cask "mimestream"
 cask "notion"
+cask "notion-calendar"
+cask "obs"
 cask "obsidian"
-cask "plex-media-player"
-# cask "shimo"
+cask "opencode-desktop"
+cask "orbstack"
+cask "orion"
+cask "pdf-expert"
+cask "pgadmin4"
+cask "pika"
+cask "postman"
+cask "qlmarkdown"
+cask "quicklook-json"
+cask "quicklook-video"
+cask "raycast"
+cask "realvnc-connect-viewer"
+cask "safari-technology-preview"
+cask "setapp"
 cask "slack"
-cask "spotify"
-# cask "steam"
+cask "steam"
+cask "tailscale-app"
+cask "teamviewer"
+cask "utm"
+cask "visual-studio-code"
+cask "vivaldi"
+cask "vlc"
+cask "voiceink"
+cask "warp"
 cask "whatsapp"
+cask "yaak"
+cask "yubico-yubikey-manager"
+cask "zed"
+cask "zen"
 cask "zoom"
 
-########################
-# Developer applications
-########################
+#################################
+# Existing Mac App Store choices
+#################################
 
-# cask "adoptopenjdk8"
-cask "balenaetcher"
-cask "cyberduck"
-cask "docker"
-cask "gpg-suite"
-cask "mongodb-compass"
-cask "ngrok"
-cask "postman"
-# cask "sourcetree"
-# cask "vmware-fusion"
-
-##########################
-# Professional applicatons
-##########################
-
-# cask "adobe-creative-cloud"
-# cask "autodesk-fusion360"
-# cask "prusaslicer"
-
-#######
-# Tools
-#######
-
-# cask "avibrazil-rdm"
-# cask "handbrake"
-# cask "hazel"
-# cask "insomnia"
-cask "pdf-expert"
-cask "teamviewer"
-cask "vlc"
-
-######################
-# Utility applications
-######################
-
-# cask "3dconnexion"
-# cask "logitech-options"
-# cask "macmediakeyforwarder"
-
-####################
-# Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
-####################
-
-cask "qlcolorcode"
-cask "qlimagesize"
-cask "qlmarkdown"
-cask "qlstephen"
-cask "qlvideo"
-cask "quicklook-json"
-
-##################################
-# Mac App Store applications (mas)
-##################################
-
-# mas "Automute", id: 1118136179
+# Preserved from the previous manifest: `mas list` could not enumerate apps.
 mas "Drafts", id: 1435957248
-# mas "Magnet", id: 441258766 # Not needed now due to bettertouchtool
