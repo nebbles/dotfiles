@@ -1,5 +1,8 @@
 # BEGIN_AWS_SSO_CLI
 
+# Load after Oh My Zsh so compdef and bashcompinit are available.
+autoload -Uz +X bashcompinit && bashcompinit
+
 # AWS SSO requires `bashcompinit` which needs to be enabled once and
 # only once in your shell.  Hence we do not include the two lines:
 #
